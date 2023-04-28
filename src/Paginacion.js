@@ -13,7 +13,6 @@ export default function Paginacion(props) {
           {pagina}
         </a>
       );
-      
     }
     return resultado;
   };
