@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Pelicula(props) {
   return (<div className="movie-item-style-2">
-      <img src={props.imagen} alt="" />
+      <img src={props.img} alt="" />
       <div className="mv-item-infor">
         <h6>
           <a href="moviesingle.html">

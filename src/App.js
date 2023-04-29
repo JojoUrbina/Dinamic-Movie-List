@@ -1,30 +1,46 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Pelicula from "./componente/Pelicula";
 import PageWrapper from "./PageWrapper";
-import peliculasJson from "./peliculas.json";
 import Paginacion from "./Paginacion";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 function App() {
   const [paginaActual, setPaginaActual] = useState(1);
-  let peliculas = peliculasJson;
+  const [peliculas, setPeliculas] = useState([]);
   const TOTAL_POR_PAGINA = 4;
-  const cargarPeliculas = () => {
-    peliculas = peliculas.slice(
-      (paginaActual - 1) * TOTAL_POR_PAGINA,
-      paginaActual * TOTAL_POR_PAGINA
-    );
+  useEffect(()=>{
+    buscarPeliculas();
+  },[])
+
+  const buscarPeliculas = async () => {
+    let url =
+      "https://cors-anywhere.herokuapp.com/https://lucasmoy-dev.github.io/data/react/peliculas.json";
+    let respuesta = await fetch(url, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Origin: "https://lucasmoy-dev.github.io",
+      },
+    });
+    let json = await respuesta.json();
+    setPeliculas(json);
   };
 
+ let peliculasPorPagina= peliculas.slice(
+  (paginaActual - 1) * TOTAL_POR_PAGINA,
+  paginaActual * TOTAL_POR_PAGINA
+ );
+ 
+
   const getTotalPaginas = () => {
-    let cantidadTotalDePeliculas = peliculasJson.length;
+    let cantidadTotalDePeliculas = peliculas.length;
     return Math.ceil(cantidadTotalDePeliculas / TOTAL_POR_PAGINA);
   };
-  cargarPeliculas();
+  
   return (
     <PageWrapper>
-      {peliculas.map((pelicula) => (
+      {peliculasPorPagina.map((pelicula) => (
         <Pelicula
           titulo={pelicula.titulo}
           calificacion={pelicula.descripcion}
@@ -32,7 +48,7 @@ function App() {
           actores={pelicula.actores}
           fecha={pelicula.fecha}
           duracion={pelicula.duracion}
-          imagen={pelicula.imagen}
+          img={pelicula.img}
           descripcion={pelicula.descripcion}
         />
       ))}
