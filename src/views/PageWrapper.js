@@ -357,8 +357,11 @@ export default function PageWrapper(props) {
             <div className="col-md-12">
               <div className="hero-ct">
                 <h2> movie listing - list</h2>
-                <h1>Si no te aparecen las peliculas has </h1>
-                <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank"><h2>CLICK AQUI</h2></a>
+                <h1>Si no te aparecen las peliculas ⇒
+                <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank"> CLICK AQUI</a>
+
+                </h1>
+                
                 <ul className="breadcumb">
                   <li className="active">
                     <a href="#">Home</a>
