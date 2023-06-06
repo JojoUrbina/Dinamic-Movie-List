@@ -4625,6 +4625,7 @@ ul {
   padding-left: 5px;
   padding-right: 5px;
   color: #4280bf;
+  cursor: pointer;
 }
 .topbar-filter .pagination2 a.active,
 .topbar-filter .pagination2 a:hover {
